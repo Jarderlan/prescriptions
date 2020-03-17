@@ -1,0 +1,134 @@
+<meta charset="utf-8">
+<!-- Script para renderizar o dataTables -->
+<script type="text/javascript">
+    $(document).ready(function(){
+    $('#tableGeral').DataTable();
+    });
+</script>
+
+<?php
+	
+	# Testa se existe algum resultado na busca... Caso o resultado seja falso, um aviso na tela será exibido informando que não existem resultados	
+	if($table_content == false){
+		echo '<span class="label label-warning">';
+		echo "Não existem resultados";
+		echo '</span><br><br>';
+	}else{
+	# Em caso positivo, a tabela começará a renderizar os dados, de acordo com as configurações
+?>
+
+<!-- Script para realizar as exclusoes -->	
+<script type="text/javascript">
+	$(document).ready(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	});
+
+	/* Função JavaScript para excluir um registro */
+	function delete_reg(filter){
+		$('#value').val(filter);
+	}
+</script>
+
+<!-- Modal de Exclusão de registro -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">
+        	Excluir Registro??
+        </h4>
+      </div>
+      <div class="modal-body">
+        	<h4><strong>
+        		Essa operação não poderá ser desfeita, quer continuar mesmo assim?
+        	</strong></h4>
+      </div>
+      <div class="modal-footer">
+      	<form action="<?php echo $delete_destiny;?>" method="POST">
+	        <!-- campo responsável por levar o id do registro -->
+	        <input type="hidden" name="filter" id="value">
+	
+	        <!-- Botão Cancelar -->
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">
+	        	<i class="fa fa-exclamation-circle"></i>  
+	        	Não, me tire daqui!
+	        </button>
+	        
+	        <!-- Botão Continuar -->
+	        <button type="submit" class="btn btn-success">
+				<i class="fa fa-check-square"></i> 
+	        	Sim, continuar!
+	        </button>
+    	</form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Renderizando a tabela -->
+<table class="table table-hover table-striped table-responsive table-bordered" id="tableGeral">
+	<thead>
+		<tr>
+		<?php
+			# Foreach responsável por mostrar os títulos da tabela 
+			foreach ($table_titles as $key => $value) {
+				echo '<th>',$value,'</th>';
+			}
+		?>
+			<th>Ações</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<?php
+
+			//Foreach de Valores		
+			foreach ($table_content as $key => $value) {
+				echo '<tr>';
+
+				//Foreach de valores para cada título
+				foreach ($table_titles as $k => $v) {
+					echo '<td>',$value[$k],'</td>';
+				}
+
+				# Botoeszinhos das açoes
+				echo '<td>';
+				
+					if(isset($show) && $show != false){
+						echo '<a id="tooltip" title="Exibir Dados" href="',$show_destiny,'&filter=',$value[$filter],'" class="btn btn-primary btn-xs">';
+						echo '<i class="fa fa-eye"></i>';
+						echo '</a> ';
+					}//Fecha o if do update
+
+					if(isset($update) && $update != false){
+						echo '<a id="tooltip" title="Editar" href="',$update_destiny,'&filter=',$value[$filter],'" class="btn btn-warning btn-xs">';
+						echo '<i class="fa fa-pencil"></i>';
+						echo '</a> ';
+					}//Fecha o if do update
+
+					if(isset($print) && $print != false){
+						echo '<a id="tooltip" title="Imprimir Relatório" href="',$print_destiny,'?filter=',$value[$filter],'" class="btn btn-primary btn-xs">';
+						echo '<i class="fa fa-print"></i>';
+						echo '</a> ';
+					}//Fecha o if do update
+
+				//if($value[$filter] != $user->id_user){
+
+					if(isset($delete) && $delete != false){ 
+						echo ' <a id="tooltip" data-toggle="modal" onclick="delete_reg(\'',$value[$filter],'\');" title="Excluir" href="#myModal" class="btn btn-danger btn-xs">';
+							echo '<i class="fa fa-trash"></i>';
+						echo '</a>';
+					}//Fecha o if do delete
+
+				//}
+
+				echo '</td>';
+				echo '</tr>';
+			}//Fecha o foreach de valores
+
+		?>
+	</tbody>
+</table>
+
+<?php } // fecha o else geral ?>

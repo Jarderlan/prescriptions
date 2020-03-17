@@ -1,0 +1,79 @@
+	<div class="col-md-12 receituario">
+		<div class="col-md-6">
+			<h5>Nome:</h5>
+			<p><?php echo $show_r['patient_name'];?></p>
+		</div>
+		<div class="col-md-4">
+			<h5>Data:</h5>
+			<p><?php echo $prescription_r['prescription_date'];?></p>
+		</div>
+	</div>
+
+	
+<div class="col-md-6 receituario">
+	<!--Olho Direito-->
+		<div class="col-md-12">
+			<h4>Olho Direito</h4>
+			<table class="table table-condensed">
+			  <thead>
+			    <tr>
+			      <th>Cilindrico</th>
+			      <th>Esferico</th>
+			      <th>Eixo</th>
+			      <th>DP</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <td><?php echo $prescription_r['prescription_re_esf']?></td>
+			      <td><?php echo $prescription_r['prescription_re_cil']?></td>
+			      <td><?php echo $prescription_r['prescription_re_eixo']?></td>
+			      <td><?php echo $prescription_r['prescription_re_dp']?></td>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+<!-- Fim Olho Direito -->
+
+<!--Olho Esquerdo-->
+	<div class="col-md-12">
+		<h4>Olho Esquerdo</h4>
+		<table class="table table-condensed">
+		  <thead>
+		    <tr>
+		      <th>Cilindrico</th>
+		      <th>Esferico</th>
+		      <th>Eixo</th>
+		      <th>DP</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td><?php echo $prescription_r['prescription_le_esf']?></td>
+		      <td><?php echo $prescription_r['prescription_le_cil']?></td>
+		      <td><?php echo $prescription_r['prescription_le_eixo']?></td>
+		      <td><?php echo $prescription_r['prescription_le_dp']?></td>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
+<!-- Fim Olho Esquerdo -->
+	<div class="col-md-12">
+		<label>Adição</label><p><?php echo $prescription_r['prescription_addition']?></p>
+		<br>
+		<label>Observações</label><p><?php echo $prescription_r['prescription_comments']?></p>
+		<br>
+	</div>
+	<div class="col-md-8">
+		<br>
+		<button class="btn btn-primary btn-block dontprint" onclick="window.print();">
+			<i class="fa fa-print"></i>
+				Imprimir		
+		</button>
+		<button class="btn btn-success btn-block dontprint" href="',$print_destiny,'">
+			<i class="fa fa-print"></i>
+				PDF		
+		</button>
+		<br>
+	</div>
+</div>

@@ -1,0 +1,64 @@
+<hr>
+<form action="<?php echo $GLOBALS['project_index'];?>/controller/update_patient.php" method="POST">
+	
+	<div class="col-md-6">
+		<label>Nome Completo:</label><br>	
+	 	<input type="text" name="patient_name" placeholder="Nome" value="<?php echo $patient_r['patient_name'];?>" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>Email:</label><br>	
+		<input type="email" name="patient_email" placeholder="Email" value="<?php echo $patient_r['patient_email'];?>" class="form-control"><br> 
+	</div>
+	
+	<div class="col-md-6">
+		<label>Telefone:</label><br>	
+		<input type="text" name="patient_contact" placeholder="Telefone" value="<?php echo $patient_r['patient_contact'];?>" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>Endereço:</label><br>	
+		<input type="text" name="patient_address" placeholder="Endereço" value="<?php echo $patient_r['patient_address'];?>" class="form-control"><br> 
+	</div>
+	
+	<div class="col-md-6">
+		<label>Cidade:</label><br>	
+		<input type="text" name="patient_city" placeholder="Cidade" value="<?php echo $patient_r['patient_city'];?>" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>Profissão:</label><br>	
+		<input type="text" name="patient_occupation" placeholder="Profissão" value="<?php echo $patient_r['patient_occupation'];?>" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>Responsável:</label><br>	
+		<input type="text" name="patient_responsible" placeholder="Responsável" value="<?php echo $patient_r['patient_responsible'];?>" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>CPF:</label><br>	
+		<input type="text" name="patient_cpf" placeholder="000.000.000-00" value="<?php echo $patient_r['patient_cpf'];?>" class="form-control"><br> 
+	</div>
+	
+	<div class="col-md-4">
+		<label>Data de Nascimento:</label><br>	
+		<input type="text" name="patient_birthday" placeholder="AAAA-MM-DD" value="<?php echo $patient_r['patient_birthday'];?>" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-4">
+		<label>Criado em:</label><br>	
+		<input type="text" placeholder="AAAA-MM-DD" class="form-control" value="<?php echo $patient_r['patient_created_in'];?>"  disabled><br> 
+	</div>
+
+	<input type="hidden" name="id_patient" value="<?php echo $patient_r['id_patient'];?>">	
+
+	<div class="col-md-12">
+		<br>
+		<button class="btn btn-warning btn-block">
+			<i class="fa fa-check"></i>
+				Modificar Dados Paciente		
+		</button>
+		<br>
+	</div>	
+</form>

@@ -1,0 +1,156 @@
+<!--Começa Daqui-->
+<hr>
+<form action="<?php echo $GLOBALS['project_index'];?>/view/forms/insert_prescription.html" method="POST">
+
+	<div class="col-md-6">
+		<label>Nome Completo:</label><br>	
+	 	<input type="text" name="patient_name" placeholder="Nome" value="<?php echo $show_r['patient_name'];?>" class="form-control" disabled><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>Email:</label><br>	
+		<input type="email" name="patient_email" placeholder="Email" value="<?php echo $show_r['patient_email'];?>" class="form-control" disabled><br> 
+	</div>
+	
+	<div class="col-md-6">
+		<label>Telefone:</label><br>	
+		<input type="text" name="patient_contact" placeholder="Telefone" value="<?php echo $show_r['patient_contact'];?>" class="form-control" disabled><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>Endereço:</label><br>	
+		<input type="text" name="patient_address" placeholder="Endereço" value="<?php echo $show_r['patient_address'];?>" class="form-control" disabled><br> 
+	</div>
+	
+	<div class="col-md-6">
+		<label>Cidade:</label><br>	
+		<input type="text" name="patient_city" placeholder="Cidade" value="<?php echo $show_r['patient_city'];?>" class="form-control" disabled><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>Profissão:</label><br>	
+		<input type="text" name="patient_occupation" placeholder="Profissão" value="<?php echo $show_r['patient_occupation'];?>" class="form-control" disabled><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>Responsável:</label><br>	
+		<input type="text" name="patient_responsible" placeholder="Responsável" value="<?php echo $show_r['patient_responsible'];?>" class="form-control" disabled><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>CPF:</label><br>	
+		<input type="text" name="patient_cpf" placeholder="000.000.000-00" value="<?php echo $show_r['patient_cpf'];?>" class="form-control" disabled><br> 
+	</div>
+	
+	<div class="col-md-4">
+		<label>Data de Nascimento:</label><br>	
+		<input type="text" name="patient_birthday" placeholder="AAAA-MM-DD" value="<?php echo $show_r['patient_birthday'];?>" class="form-control" disabled><br> 
+	</div>
+
+	<div class="col-md-4">
+		<label>Criado em:</label><br>	
+		<input type="text" placeholder="AAAA-MM-DD" class="form-control" value="<?php echo $show_r['patient_created_in'];?>"  disabled><br> 
+	</div>
+
+	<input type="hidden" name="id_patient" value="<?php echo $show_r['id_patient'];?>">	
+
+<!-- Botão Nova Receita -->
+
+	<div class="col-md-4">
+		<br>
+		<a href="?option=insert_prescription&content=Inserção de Receita&filter=<?php echo $show_r['id_patient'];?>" class="btn btn-primary">
+			<i class="glyphicon glyphicon-sunglasses"></i>
+			Nova Receita
+		</a>
+		<br>
+	</div>
+</form>
+
+<!-- Visualização de Receita -->
+<div class="container col-md-12">
+<meta charset="utf-8">
+<!-- Script para renderizar o dataTables -->
+<script type="text/javascript">
+    $(document).ready(function(){
+    $('#tableGeral').DataTable({
+    	"paginate":false,
+    	"searching":false,
+    });
+    });
+</script>
+
+<?php
+	
+	# Testa se existe algum resultado na busca... Caso o resultado seja falso, um aviso na tela será exibido informando que não existem resultados	
+	if($table_content == false){
+		echo '<span class="label label-warning">';
+		echo "Não existem resultados";
+		echo '</span><br><br>';
+	}else{
+	# Em caso positivo, a tabela começará a renderizar os dados, de acordo com as configurações
+?>
+
+<!-- Script para realizar as exclusoes -->	
+<script type="text/javascript">
+	$(document).ready(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	});
+
+	/* Função JavaScript para excluir um registro */
+	function delete_reg(filter){
+		$('#value').val(filter);
+	}
+</script>
+
+<!-- Renderizando a tabela -->
+<table class="table table-hover table-striped table-responsive table-bordered" id="tableGeral">
+	<thead>
+		<tr>
+		<?php
+			# Foreach responsável por mostrar os títulos da tabela 
+			foreach ($table_titles as $key => $value) {
+				echo '<th>',$value,'</th>';
+			}
+		?>
+			<th>Ações</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<?php
+
+			//Foreach de Valores		
+			foreach ($table_content as $key => $value) {
+				echo '<tr>';
+
+				//Foreach de valores para cada título
+				foreach ($table_titles as $k => $v) {
+					echo '<td>',$value[$k],'</td>';
+				}
+
+				# Botoeszinhos das açoes
+				echo '<td>';
+				
+					if(isset($show) && $show != false){
+						echo '<a id="tooltip" title="Exibir Dados" href="',$show_destiny,'&filter=',$show_r['id_patient'],'&prescription=',$value['id_prescription'],'" class="btn btn-primary btn-xs">';
+						echo '<i class="fa fa-eye"></i>';
+						echo '</a> ';
+					}//Fecha o if do update
+
+					if(isset($print) && $print != false){
+						echo '<a id="tooltip" title="Imprimir Relatório" href="',$print_destiny,'?&filter=',$show_r['id_patient'],'&prescription=',$value['id_prescription'],'" class="btn btn-success btn-xs">';
+						echo '<i class="fa fa-print"></i>';
+						echo '</a> ';
+					}//Fecha o if do update
+
+				echo '</td>';
+
+				echo '</tr>';
+			}//Fecha o foreach de valores
+
+		?>
+	</tbody>
+</table>
+</div>
+
+<?php } // fecha o else geral ?>

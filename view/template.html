@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<title> <?php echo $page_title; ?> </title>
+	<!-- Link do CSS do Bootstrap -->
+	<link rel="stylesheet" href="<?php echo $project_index; ?>/view/assets/bootstrap/css/bootstrap.css">
+	<!-- Link do CSS do Font Awesome -->
+	<link rel="stylesheet" href="<?php echo $project_index; ?>/view/assets/font-awesome/css/font-awesome.min.css">
+	<!-- Link do CSS do Sidebar -->
+	<link href="<?php echo $project_index; ?>/view/assets/external_css/simple-sidebar.css" rel="stylesheet">
+
+	<!-- Link do CSS do DataTable -->
+	<link href="<?php echo $project_index; ?>/view/assets/external_css/jquery.dataTables.min.css" rel="stylesheet">
+
+	<!-- Link do JS do Jquery -->
+	<script src="<?php echo $project_index; ?>/view/assets/bootstrap/js/jquery.js">
+	</script>
+	
+	<!-- Link do JS do JavaScript do Bootstrap -->
+	<script src="<?php echo $project_index; ?>/view/assets/bootstrap/js/bootstrap.js">
+	</script>
+
+	<!-- Link do JS do DataTables -->
+	<script src="<?php echo $project_index; ?>/view/assets/external_js/data-tables/data_tables.min.js"></script>
+
+	<!-- Link do JS do JqueryMask -->
+	<script src="<?php echo $project_index; ?>/view/assets/external_js/jquery-mask/jquery.mask.js"></script>
+
+	<!-- Link CSS MPDF-->
+	<link href="<?php echo $project_index; ?>/view/assets/mypdf.css" type="text/css" rel="stylesheet" media="mpdf" />
+
+	<!-- Print CSS -->
+	<link rel="stylesheet" type="text/css" media="print" href="<?php echo $project_index; ?>/view/assets/print.css" />
+</head>
+<body>
+	<style type="text/css">
+		.row{
+			margin:0;
+		}
+		.navbar-nav > li > a {
+			padding-top: 22px;
+			padding-bottom: 22px;
+		}
+		.navbar-inverse .navbar-nav > li > a {
+			color: #fff;
+		}
+
+	</style>
+
+	<header class="row navbar navbar-df">
+		<!-- <div class="container"> -->
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#4682B4; border-color:#4682B4; height:65px; display:block;">
+			<div class="container-fluid">
+		     <!-- Agrupamento para melhor exibição móvel -->
+		    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">
+			        	Toggle navigation
+			        </span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+			      <a class="navbar-brand" href="index.php">
+			      	<span class="fa fa-user-md fa-2x" style="color: #ffffff"></span>
+			      		<strong style="color: #ffffff">Receituário Online</strong> 
+			      	
+			      </a>
+		   	</div>
+
+		   	<!-- Coletar os links de navegação,formulários e outros conteúdos para alternar -->
+	    	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    	<?php
+		    	# Aqui testamos se existe alguma sessão
+		    	if(isset($_SESSION[md5('us_inventory')])){
+		    ?>
+		    <ul class="nav navbar-nav navbar-right">
+		        <li>
+		        	<a href="#">
+		        		<?php echo $user->name; ?>
+		        	</a>
+		    	</li>
+		    	<li>
+	            	<a href="<?php echo $project_index.'/controller/logout.php'; ?>">
+	            		<i class="fa fa-power-off"></i>
+	            		Sair
+	            	</a>
+	           </li>
+	        </ul>
+			<?php  } #Fechando o if ?>
+			</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+		<!-- </div> container geral -->
+	</header>
+
+	<div id="wrapper" style="">
+
+		<!-- Sidebar -->
+        <div id="sidebar-wrapper" style="background-color: #4682B4">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        <?php //echo $user->name; ?>
+                    </a>
+                </li>
+                <?php 
+					if(isset($user)){
+						include_once $project_path.'/view/menu.html';
+					}else{
+						#Não Faz nada ainda
+					} 
+				?>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                    	<a href="#menu-toggle" class="btn btn-danger btn-xs dontprint" id="menu-toggle">
+                    	Esconder/Mostrar o Menu</a>
+                        <h2>
+                        	<span class="label label-warning dontprint">
+                        		<?php echo $content_title;?>
+                        	</span>
+                       	</h2>
+                       	<!-- Conteúdo da Página -->
+                        <?php page_content();?>          
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+    <br><br>
+	<footer style="position:fixed;bottom:0px;width:100%">
+	<p class="bg-primary dontprint" style="padding: 20px; text-align: right; font-weight: bolder; background-color: #4682B4;color: white;margin:0px">Created and Edited by: Jarderlan Lima &copy; - <?php echo date('Y'); ?> RECEITUÁRIO ONLINE &reg; -  Todos os Direitos Reservados </p>
+	</footer>
+	</body>
+</html>

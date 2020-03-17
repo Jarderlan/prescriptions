@@ -1,0 +1,28 @@
+<div class="jumbotron">
+<h3>Seja Bem vindo, 
+<?php 
+	//MOSTRAR O NOME DO USUÁRIO
+	 $user = $_SESSION[md5('us_inventory')]; 
+	 echo $user->name;
+?>.
+</h3>
+
+<p class="text-justify">
+	Você está no sistema de receituário online. Ao lado, você encontrará as opções do nosso sistema para você. 
+	<?php
+
+		if($user->user_profile == "admin"){
+			echo 'Se preferir verifique sua <a href="?option=list_patients&content=Pacientes">Lista de Pacientes</a> Nele você verá as os dados mais recentes.';
+
+		}else{
+	
+		}
+	?>
+	 
+</p>
+<br>
+<p>
+	Em caso de dúvida contate o 
+	<a href="#">Administrador Master.</a>
+</p>
+</div>

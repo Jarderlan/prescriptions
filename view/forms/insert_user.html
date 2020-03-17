@@ -1,0 +1,64 @@
+<hr>
+<form action="<?php echo $GLOBALS['project_index'];?>/controller/insert_user.php" method="POST">
+	
+	<div class="col-md-12">
+		<label>Nome Completo:</label><br>	
+	 	<input type="text" name="user_name" placeholder="Digite seu nome completo" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>Email:</label><br>	
+		<input type="email" name="user_email" placeholder="Digite seu email" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>Senha:</label><br>	
+		<input type="password" name="user_password" placeholder="Digite uma senha" class="form-control"><br> 
+	</div>
+	
+	<div class="col-md-6">
+		<label>Telefone:</label><br>	
+		<input type="text" name="user_phone" placeholder="Digite seu telefone" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>Profissão:</label><br>	
+	 	<input type="text" name="user_occupation" placeholder="Digite sua Profissão" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-4">
+		<label>Registro Profissional:</label><br>	
+	 	<input type="text" name="user_registry" placeholder="Registro Profissional" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-4">
+		<label>Criado em:</label><br>	
+		<input type="text" placeholder="AAAA-MM-DD" class="form-control" value="<?php echo date('Y-M-d H:i:s');?>" disabled><br> 
+	</div>
+	
+	<div class="col-md-4">
+	<label>Tipo de Perfil</label><br>	
+		<select name="user_profile" class="form-control" required>
+			<option selected disabled>
+				-- Selecione um Perfil --
+			</option> 
+			<?php 
+				foreach ($profiles as $profile) {
+					echo '<option value='.$profile['user_profile'].'>';
+					echo $profile['user_profile'];
+					echo '</option>';
+				}
+
+			?> 
+		</select>
+	</div>
+
+	<div class="col-md-12">
+		<br>
+		<button class="btn btn-primary btn-block">
+			<i class="fa fa-envelope-o"></i>
+				Cadastrar Usuário		
+		</button>
+		<br>
+	</div>	
+</form>

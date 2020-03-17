@@ -1,0 +1,40 @@
+<?php
+
+if(isset($user)){
+	if($user->user_profile == "admin"){
+?>
+		<li><a href="<?php echo $GLOBALS['project_index'];?>">
+		<span class="glyphicon glyphicon-home"></span>
+		 Inicio</a></li>
+
+		<li><a href="?option=list_users&content=Usuários">
+		<span class="fa fa-user-circle-o"></span>
+		 Usuários</a></li>
+
+		<li><a href="?option=list_patients&content=Pacientes">
+		<span class="fa fa-book"></span>
+		 Pacientes</a></li>
+
+		<!--<li><a href="?option=list_students&content=Alunos">
+		<span class="fa fa-graduation-cap"></span>
+		 Nossos Alunos</a></li>
+
+		<li><a href="?option=list_courses&content=Cursos">
+		<span class="fa fa-desktop"></span>
+		 Cursos Disponíveis</a></li>
+
+		<li><a href="?option=list_classes&content=Turmas">
+		<span class="fa fa-group"></span>
+		 Turmas </a></li>
+
+		<li><a href="">
+		<span class="fa fa-print"></span>
+		 Relatórios</a></li>-->
+
+		<li><a href="controller/logout.php">
+		<span class="fa fa-power-off"></span>
+		 Sair do Sistema</a></li>		
+
+<?php }// Fecha o menu do Admin ?>
+
+<?php }// Fecha o teste do User ?>

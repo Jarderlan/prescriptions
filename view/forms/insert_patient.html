@@ -1,0 +1,62 @@
+<hr>
+<form action="<?php echo $GLOBALS['project_index'];?>/controller/insert_patient.php" method="POST">
+	
+	<div class="col-md-6">
+		<label>Nome Completo:</label><br>	
+	 	<input type="text" name="patient_name" placeholder="Digite seu nome completo" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>Email:</label><br>	
+		<input type="email" name="patient_email" placeholder="Digite seu email" class="form-control"><br> 
+	</div>
+	
+	<div class="col-md-6">
+		<label>Telefone:</label><br>	
+		<input type="text" name="patient_contact" placeholder="Digite seu telefone" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>Endereço:</label><br>	
+		<input type="text" name="patient_address" placeholder="Endereço" class="form-control"><br> 
+	</div>
+	
+	<div class="col-md-6">
+		<label>Cidade:</label><br>	
+		<input type="text" name="patient_city" placeholder="Cidade" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>Profissão:</label><br>	
+		<input type="text" name="patient_occupation" placeholder="Profissão" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>Responsável:</label><br>	
+		<input type="text" name="patient_responsible" placeholder="Responsável" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-6">
+		<label>CPF:</label><br>	
+		<input type="text" name="patient_cpf" placeholder="000.000.000-00" class="form-control"><br> 
+	</div>
+	
+	<div class="col-md-4">
+		<label>Data de Nascimento:</label><br>	
+		<input type="text" name="patient_birthday" placeholder="AAAA-MM-DD" class="form-control"><br> 
+	</div>
+
+	<div class="col-md-4">
+		<label>Criado em:</label><br>	
+		<input type="text" placeholder="AAAA-MM-DD" class="form-control" value="<?php echo date('Y-M-d H:i:s');?>" disabled><br> 
+	</div>
+
+	<div class="col-md-12">
+		<br>
+		<button class="btn btn-primary btn-block">
+			<i class="fa fa-envelope-o"></i>
+				Cadastrar Paciente
+		</button>
+		<br>
+	</div>	
+</form>
